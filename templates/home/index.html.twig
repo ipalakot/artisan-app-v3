@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+	<!-- bloc des commerces -->
+	{% include 'blocks/block_home_shops.html.twig' with {'activityTypes': activitytypes} %}
+
+	<!-- bloc serviceks -->
+	{% include 'blocks/block_home_services.html.twig' %}
+
+
+{% endblock %}

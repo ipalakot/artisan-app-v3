@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activitytype index
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center">Activitytype index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Détails</th>
+				<th>Modifier</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for activitytype in activitytypes %}
+				<tr>
+					<td>{{ activitytype.id }}</td>
+					<td>{{ activitytype.title }}</td>
+					<td>
+						<a href="{{ path('app_activitytype_show', {'id': activitytype.id}) }}">détails
+							{{activitytype.title}}</a>
+					</td>
+					<td>
+						<a href="{{ path('app_activitytype_edit', {'id': activitytype.id}) }}">modifier
+							{{activitytype.title }}</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_activitytype_new') }}">Create new</a>
+{% endblock %}

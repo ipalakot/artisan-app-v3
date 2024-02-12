@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}trader list
+{% endblock %}
+
+
+{%block body%}
+
+
+	<h1 class="text-center">LISTE DES COMMERCES</h1>
+
+
+	<!-- Portfolio Grid-->
+	<section class="page-section bg-light" id="portfolio">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">Les commerces</h2>
+			</div>
+			<div class="row">
+				{%for trader in traders %}
+
+					<div
+						class="col-lg-4 col-sm-6 mb-4">
+						<!-- Portfolio item 1-->
+						<div class="portfolio-item text-center">
+							<div class="portfolio-hover">
+								<div class="portfolio-hover-content">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div>
+							{%for img in trader.profilephoto %}
+								<img class="img-fluid img-activity" src="{{ asset('/uploads/' ~ img.name) }}" alt="...">
+								{%endfor%}
+
+								<div class="portfolio-caption">
+									<div class="portfolio-caption-heading">
+										<h3 class="card-title">
+											<a href="#">{{trader.compagnyname}}</a>
+										</h3>
+										<p class="card-text">
+											{{trader.city}}
+											{{trader.postalcode}}
+										</p>
+										<p class="card-text">
+											{{trader.adress}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endfor%}
+
+					</section>
+
+
+				{%endblock %}

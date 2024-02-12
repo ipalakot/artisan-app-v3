@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+
+{{form_row(form.lastnameboss)}}
+{{form_row(form.firstnameboss)}}
+{{form_row(form.email)}}
+{{form_row(form.phone)}}
+{{form_row(form.password)}}
+{{form_row(form.confirmpassword)}}
+{{form_row(form.compagnyname)}}
+{{form_row(form.activitytype)}}
+{{form_row(form.siren)}}
+{{form_row(form.adress)}}
+{{form_row(form.postalcode)}}
+{{form_row(form.city)}}
+{{form_row(form.presentation)}}
+{{form_row(form.profilephoto)}}
+{{form_row(form.coverphoto)}}
+
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

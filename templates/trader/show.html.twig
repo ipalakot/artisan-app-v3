@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trader
+{% endblock %}
+
+{% block body %}
+	<h1>Trader</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ trader.id }}</td>
+			</tr>
+			<th>Nom</th>
+			<td>{{ trader.lastnameboss }}</td>
+		</tbody>
+	</tr>
+	<tr>
+		<th>Prénom</th>
+		<td>{{ trader.firstnameboss }}</td>
+	</tr>
+
+	<tr>
+		<th>Email</th>
+		<td>{{ trader.email }}</td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<th>Nom de l'entreprise
+		</th>
+		<td>{{ trader.compagnyname }}</td>
+	</tr>
+	<tr>
+		<th>Siren</th>
+		<td>{{ trader.siren }}</td>
+	</tr>
+	<tr>
+		<th>Téléphone</th>
+		<td>{{ trader.phone }}</td>
+	</tr>
+	<tr>
+		<th>Adresse</th>
+		<td>{{ trader.adress }}</td>
+	</tr>
+
+	<tr>
+		<th>Code postal</th>
+		<td>{{ trader.postalcode }}</td>
+	</tr>
+
+	<tr>
+		<th>Ville</th>
+		<td>{{ trader.city }}</td>
+	</tr>
+
+
+	<tr>
+		<th>Présentation</th>
+		<td>{{ trader.presentation }}</td>
+	</tr>
+	<tr>
+		<th>Roles</th>
+		<td>{{ trader.roles ? trader.roles|json_encode : '' }}</td>
+	</tr>
+
+
+	<tr>
+		<th>Photo de profil</th>
+		<td>
+			{%for img in trader.profilephoto %}
+				<div>
+
+					<img class="img-fluid" src="{{asset('/uploads/' ~ img.name)}}" alt="photo de profil {{trader.compagnyname}}" width="200">
+				</div>
+				{%endfor%}</td>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th>Photo de couverture</th>
+		<td>
+			{%for img in trader.coverphoto %}
+				<div>
+
+					<img class="img-fluid" src="{{asset('/uploads/' ~ img.name)}}" alt="photo de couverture {{trader.compagnyname}}" width="200">
+				</div>
+				{%endfor%}</td>
+		</td>
+	</tr>
+
+
+</tbody></table><a href="{{ path('app_trader_index') }}">back to list</a><a href="{{ path('app_trader_edit', {'id': trader.id}) }}">edit</a>{{ include('trader/_delete_form.html.twig') }}{% endblock %}

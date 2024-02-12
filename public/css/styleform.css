@@ -1,0 +1,59 @@
+/*
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+*/
+
+.img-activity {
+    width: 300px;
+    height: 300px;
+}
+
+
+
+.formulaire {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulaire form {
+    display: grid;
+    gap: 15px;
+}
+
+.formulaire label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulaire input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulaire button {
+    /*background-color: red;
+    color: white; */
+
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Ajout de styles pour rendre le formulaire responsive */
+@media screen and (max-width: 600px) {
+    .formulaire {
+        width: 90%;
+    }
+}
