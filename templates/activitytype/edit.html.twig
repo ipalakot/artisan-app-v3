@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Activitytype{% endblock %}
+{% block title %}Edit Activitytype
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Activitytype</h1>
+	<h1>Edit Activitytype</h1>
+	<div class="formulaire">
+		{{ include('activitytype/_form.html.twig', {'button_label': 'Update'}) }}
+	</div>
+	<a href="{{ path('app_activitytype_index') }}">back to list</a>
 
-    {{ include('activitytype/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_activitytype_index') }}">back to list</a>
-
-    {{ include('activitytype/_delete_form.html.twig') }}
+	{{ include('activitytype/_delete_form.html.twig') }}
 {% endblock %}

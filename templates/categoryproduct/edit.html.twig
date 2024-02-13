@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Categoryproduct{% endblock %}
+{% block title %}Edit Categoryproduct
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Categoryproduct</h1>
+	<h1>Edit Categoryproduct</h1>
+	<div class="formulaire">
+		{{ include('categoryproduct/_form.html.twig', {'button_label': 'Update'}) }}
+	</div>
+	<a href="{{ path('app_categoryproduct_index') }}">back to list</a>
 
-    {{ include('categoryproduct/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_categoryproduct_index') }}">back to list</a>
-
-    {{ include('categoryproduct/_delete_form.html.twig') }}
+	{{ include('categoryproduct/_delete_form.html.twig') }}
 {% endblock %}

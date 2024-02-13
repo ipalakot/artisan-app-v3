@@ -19,6 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/activitytype')]
 class ActivitytypeController extends AbstractController
 {
+
+    //afficher toutes les activitytype pour admin 
     #[Route('/', name: 'app_activitytype_index', methods: ['GET'])]
     public function index(ActivitytypeRepository $activitytypeRepository): Response
     {
@@ -28,7 +30,7 @@ class ActivitytypeController extends AbstractController
             ]
         );
     }
-
+    //créer une nouvelle activitytype pour admin 
     #[Route('/new', name: 'app_activitytype_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -76,7 +78,7 @@ class ActivitytypeController extends AbstractController
 
 
 
-
+    //afficher les caractéristique d'une activitytype pour admin 
         #[Route('/{id}', name: 'app_activitytype_show', methods: ['GET'])]
     public function show(Activitytype $activitytype): Response
     {
@@ -86,7 +88,7 @@ class ActivitytypeController extends AbstractController
             ]
         );
     }
-
+    //modifier une activitytype pour les admins 
         #[Route('/{id}/edit', name: 'app_activitytype_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Activitytype $activitytype, EntityManagerInterface $entityManager): Response
     {
@@ -131,7 +133,7 @@ class ActivitytypeController extends AbstractController
             ]
         );
     }
-
+    //supprimer une activitytype pour les admins 
         #[Route('/{id}', name: 'app_activitytype_delete', methods: ['POST'])]
     public function delete(Request $request, Activitytype $activitytype, EntityManagerInterface $entityManager): Response
     {
