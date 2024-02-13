@@ -1,0 +1,47 @@
+{%block body%}
+
+
+<div class="container-profile">
+	<div class="row">
+		<div
+			class="col-md-12">
+			<!-- Photo de couverture -->
+
+			{% for cover in trader.coverphoto %}
+				<img src="{{asset('/uploads/' ~ cover.name)}}" alt="Photo de couverture" class="img-fluid cover-photo">
+
+				{%endfor%}
+			</div>
+			<div
+				class="col-md-4 text-center">
+				<!-- Photo de profil -->
+				{%for img in trader.profilephoto %}
+					<img src="{{asset('/uploads/'~ img.name)}}" alt="Photo de profil" class="img-fluid profile-photo">
+
+					{%endfor%}
+				</div>
+				<div
+					class="col-md-8">
+					<!-- Titre du nom de l'utilisateur -->
+					<h2 class="mt-3">{{trader.compagnyname}}</h2>
+					<!-- Bloc d'informations personnelles -->
+					<div class="personal-info">
+						<p>{{trader.activitytype}}
+						</p>
+
+						<p>Email :
+							{{trader.email}}</p>
+						<p>Téléphone :
+							{{trader.phone}}</p>
+						<p>Adresse :
+							{{trader.adress}}
+							{{trader.postalcode}}
+							{{trader.city}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		{%endblock%}

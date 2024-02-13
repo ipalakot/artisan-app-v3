@@ -7,14 +7,11 @@
 {%block body%}
 
 
-	<h1 class="text-center">LISTE DES COMMERCES</h1>
-
-
 	<!-- Portfolio Grid-->
 	<section class="page-section bg-light" id="portfolio">
 		<div class="container">
 			<div class="text-center">
-				<h2 class="section-heading text-uppercase">Les commerces</h2>
+				<h2 class="section-heading text-uppercase mb-5">Vos Artisans</h2>
 			</div>
 			<div class="row">
 				{%for trader in traders %}
@@ -35,7 +32,7 @@
 								<div class="portfolio-caption">
 									<div class="portfolio-caption-heading">
 										<h3 class="card-title">
-											<a href="#">{{trader.compagnyname}}</a>
+											<a href="{{path('app_trader_showcase', {'id': trader.id})}}">{{trader.compagnyname}}</a>
 										</h3>
 										<p class="card-text">
 											{{trader.city}}

@@ -1,36 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Trader
-{% endblock %}
-
 {%block body%}
 
-<div class="container">
-	<h2>{{trader.compagnyname}}
-	</h2>
 
-	<p>
-		{{trader.presentation}}
-	</p>
-
-	<h3>Coordonnées
-	</h3>
-	<p>
-		Téléphone:
-		{{trader.phone}}
-	</p>
-	<p>
-		Email:
-		{{trader.email}}
-	</p>
-	<p>
-		Adresse:
-		{{trader.adress}}
-		<br/>
-		{{trader.postalcode}}
-		{{trader.city}}
-	</p>
-</div>
-
+{% include ('blocks/block_trader_profile.html.twig')  %}
 
 {%endblock%}
