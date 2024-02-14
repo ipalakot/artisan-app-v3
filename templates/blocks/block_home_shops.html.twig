@@ -18,7 +18,7 @@
 							</div>
 						</div>
 						{%for img in shop.imgactivity %}
-							<img class="img-fluid img-activity" src="{{ asset('/uploads/' ~ img.name) }}" alt="...">
+							<img class="img-fluid img-activity" src="{{ asset('/uploads/' ~ img.name) }}" alt="{{shop.title}}">
 							{%endfor%}
 
 							<div class="portfolio-caption">
