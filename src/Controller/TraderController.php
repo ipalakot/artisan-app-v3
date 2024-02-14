@@ -9,6 +9,7 @@ use App\Entity\Image;
 
 use App\Form\TraderType;
 use App\Repository\TraderRepository;
+use App\Repository\ActivitytypeRepository; 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Test\FormInterface;
@@ -156,7 +157,25 @@ class TraderController extends AbstractController
         );
     }
 
+    //afficher les traders par catégories 
+
+    #[Route('/{id}/activitytype', name: 'app_trader_activitytype', methods: ['GET'])]
+    public function traderByActivitytype($id, TraderRepository $traderRepository, ActivitytypeRepository $activitytypeRepository): Response
+    {
+        $traders = $traderRepository->findByTraderActivitytype($id); 
+        //$activitytype= $activitytypeRepository->find($id); 
+        return $this->render(
+            'trader/traderlist.html.twig', [
+            //'activitytypes' => $activitytypes,
+            'traders' => $traders, 
+            ]
+        );
+    }
     
+
+
+
+
 
     //afficher un trader pour admin 
     #[Route('/{id}', name: 'app_trader_show', methods: ['GET'])]

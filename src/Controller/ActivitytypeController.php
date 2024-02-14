@@ -74,6 +74,10 @@ class ActivitytypeController extends AbstractController
         );
     }
 
+    //afficher les activitytypes dans block_home_shops 
+    
+
+
 
 
 

@@ -160,6 +160,24 @@ class TraderRepository extends ServiceEntityRepository implements PasswordUpgrad
     }
 
 
+    //récupérer les traders par activitytype 
+    public function findByTraderActivitytype($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb
+            ->innerJoin('App\Entity\Activitytype',  'c', 'WITH', 'c = a.activitytype')
+
+            ->where('c.id like :activitytypeId')
+            ->setParameter('activitytypeId', $id)
+            ->orderBy('a.compagnyname', 'ASC');
+
+        // dump($qb->getQuery()->getResult());
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 
 
 
