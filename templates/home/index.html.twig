@@ -5,6 +5,11 @@
 
 {% block body %}
 
+
+	<!-- introduction -->
+	{%include('blocks/block_home_introduction.html.twig')%}
+
+
 	<!-- bloc des commerces -->
 	{% include 'blocks/block_home_shops.html.twig' with {'activityTypes': activitytypes} %}
 
