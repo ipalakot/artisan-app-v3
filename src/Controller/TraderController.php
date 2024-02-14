@@ -63,10 +63,10 @@ class TraderController extends AbstractController
     public function traderByActivitytype($id, TraderRepository $traderRepository, ActivitytypeRepository $activitytypeRepository): Response
     {
         $traders = $traderRepository->findByTraderActivitytype($id); 
-        //$activitytype= $activitytypeRepository->find($id); 
+        $activitytypes= $activitytypeRepository->find($id); 
         return $this->render(
             'trader/traderlist.html.twig', [
-            //'activitytypes' => $activitytypes,
+            'activitytypes' => $activitytypes,
             'traders' => $traders, 
             ]
         );
