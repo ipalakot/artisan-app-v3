@@ -67,8 +67,8 @@ class TraderRepository extends ServiceEntityRepository implements PasswordUpgrad
     //        ;
     //    }
 
-
-    //récupérer toutes les boulangeries 
+    
+    //récupérer toutes les boulangeries fonction de base pour le tri.  
     
     public function findByBoulangerie()
     {
@@ -86,79 +86,7 @@ class TraderRepository extends ServiceEntityRepository implements PasswordUpgrad
         return $qb->getQuery()->getResult();
     }
 
-    //Récupérer toutes les boucheries 
-    public function findByBoucherie()
-    {
-        $qb = $this->createQueryBuilder('a');
-
-        $qb
-            ->innerJoin('App\Entity\Activitytype',  'c', 'WITH', 'c = a.activitytype')
-
-            ->where('c.title like :activitytype')
-            ->setParameter('activitytype', 'Boucheries')
-            ->orderBy('a.compagnyname', 'ASC');
-
-        // dump($qb->getQuery()->getResult());
-
-        return $qb->getQuery()->getResult();
-    }
-
-
-    //Récupéré toutes les Poissonneries
-    public function findByPoissonnerie()
-    {
-        $qb = $this->createQueryBuilder('a');
-
-        $qb
-            ->innerJoin('App\Entity\Activitytype',  'c', 'WITH', 'c = a.activitytype')
-
-            ->where('c.title like :activitytype')
-            ->setParameter('activitytype', 'Poissonneries')
-            ->orderBy('a.compagnyname', 'ASC');
-
-        // dump($qb->getQuery()->getResult());
-
-        return $qb->getQuery()->getResult();
-    }
-
-
-
-
-    //Récupérer touttes les fromageries 
-    public function findByFromagerie()
-    {
-        $qb = $this->createQueryBuilder('a');
-
-        $qb
-            ->innerJoin('App\Entity\Activitytype',  'c', 'WITH', 'c = a.activitytype')
-
-            ->where('c.title like :activitytype')
-            ->setParameter('activitytype', 'Fromageries')
-            ->orderBy('a.compagnyname', 'ASC');
-
-        // dump($qb->getQuery()->getResult());
-
-        return $qb->getQuery()->getResult();
-    }
-
-
-    //Récupérer tous les primeurs 
-    public function findByPrimeur()
-    {
-        $qb = $this->createQueryBuilder('a');
-
-        $qb
-            ->innerJoin('App\Entity\Activitytype',  'c', 'WITH', 'c = a.activitytype')
-
-            ->where('c.title like :activitytype')
-            ->setParameter('activitytype', 'Primeurs')
-            ->orderBy('a.compagnyname', 'ASC');
-
-        // dump($qb->getQuery()->getResult());
-
-        return $qb->getQuery()->getResult();
-    }
-
+    
 
     //récupérer les traders par activitytype 
     public function findByTraderActivitytype($id)

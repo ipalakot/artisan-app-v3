@@ -30,107 +30,7 @@ class TraderController extends AbstractController
             ]
         );
     }
-
-    //afficher toutes les boulangeries 
-    #[Route('/boulangeries', name: 'app_trader_boulangerie', methods: ['GET'])]
-    public function getBoulangerie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByBoulangerie(); 
-
-        return $this->render(
-            'trader/traderlist.html.twig', [
-                'traders' => $traders,
-            ]
-        );        
-    }
-
-
-    //trier par boulangeries pour admin 
-    #[Route('/triboulangeries', name: 'app_trader_triboulangerie', methods: ['GET'])]
-    public function getTriBoulangerie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByBoulangerie(); 
-
-        return $this->render(
-            'trader/index.html.twig', [
-                'traders' => $traders,
-            ]
-        );        
-    }
-
-        
-            
-    //afficher toutes les boucheries 
-    #[Route('/boucheries', name: 'app_trader_boucherie', methods: ['GET'])]
-    public function getBoucherie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByBoucherie(); 
-
-        return $this->render(
-            'trader/traderlist.html.twig', [
-                'traders' => $traders,
-            ]
-        );       
-    }
-
-    //trier les boucheries pour admin 
-    #[Route('/triboucheries', name: 'app_trader_triboucherie', methods: ['GET'])]
-    public function getTriBoucherie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByBoucherie(); 
-
-        return $this->render(
-            'trader/index.html.twig', [
-                'traders' => $traders,
-            ]
-        );       
-    }
-
-
-    //afficher toutes les poissonneries  
-    #[Route('/poissonneries', name: 'app_trader_poissonnerie', methods: ['GET'])]
-    public function getPoissonnerie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByPoissonnerie(); 
-
-        return $this->render(
-            'trader/traderlist.html.twig', [
-                'traders' => $traders,
-            ]
-        );
-       
-    }
-
-    //afficher toutes les fromageries 
-    #[Route('/fromageries', name: 'app_trader_fromagerie', methods: ['GET'])]
-    public function getFromagerie(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByFromagerie(); 
-
-        return $this->render(
-            'trader/traderlist.html.twig', [
-                'traders' => $traders,
-            ]
-        );
-       
-    }
-
-
-    //afficher tous les primeurs 
-    #[Route('/primeurs', name: 'app_trader_primeur', methods: ['GET'])]
-    public function getPrimeur(TraderRepository $traderRepository, Request $request)
-    {
-        $traders= $traderRepository->findByPrimeur(); 
-
-        return $this->render(
-            'trader/traderlist.html.twig', [
-                'traders' => $traders,
-            ]
-        );
-       
-    }
-
-    //Créer un trader 
+    //Créer un trader pour admin  
     #[Route('/new', name: 'app_trader_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -175,9 +75,7 @@ class TraderController extends AbstractController
 
 
 
-
-
-    //afficher un trader pour admin 
+    //afficher les caractéristiques d'un trader pour admin 
     #[Route('/{id}', name: 'app_trader_show', methods: ['GET'])]
     public function show(Trader $trader): Response
     {
@@ -201,7 +99,7 @@ class TraderController extends AbstractController
     }
 
 
-    //modifier un trader 
+    //modifier un trader pour admin 
     #[Route('/{id}/edit', name: 'app_trader_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Trader $trader, EntityManagerInterface $entityManager): Response
     {
@@ -243,7 +141,7 @@ class TraderController extends AbstractController
         );
     }
 
-    //Suprimer un trader 
+    //Suprimer un trader pour admin 
     #[Route('/{id}', name: 'app_trader_delete', methods: ['POST'])]
     public function delete(Request $request, Trader $trader, EntityManagerInterface $entityManager): Response
     {
