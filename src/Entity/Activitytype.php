@@ -25,8 +25,9 @@ class Activitytype
     #[ORM\OneToMany(mappedBy: 'activitytype', targetEntity: Image::class,  cascade:["persist"], orphanRemoval: true)]
     private Collection $imgactivity;
 
-    #[ORM\OneToMany(mappedBy: 'activitytype', targetEntity: Trader::class)]
+    #[ORM\OneToMany(targetEntity: Trader::class, mappedBy: 'activitytype')]
     private Collection $traders;
+
     public function __construct()
     {
         $this->imgactivity = new ArrayCollection();
@@ -78,6 +79,11 @@ class Activitytype
         }
     }
 
+    public function __toString()
+    {
+        return $this->title ?? '';
+    }
+
     /**
      * @return Collection<int, Trader>
      */
@@ -106,11 +112,6 @@ class Activitytype
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->title ?? '';
     }
 
 

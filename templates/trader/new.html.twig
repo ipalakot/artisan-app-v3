@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Trader
-{% endblock %}
+{% block title %}New Trader{% endblock %}
 
 {% block body %}
-	<h1 class="text-center">Créer un nouveau Trader</h1>
-	<div class="formulaire">
-		{{ include('trader/_form.html.twig') }}
-	</div>
-	<a href="{{ path('app_trader_index') }}">back to list</a>
+    <h1>Create new Trader</h1>
+
+    {{ include('trader/_form.html.twig') }}
+
+    <a href="{{ path('app_trader_index') }}">back to list</a>
 {% endblock %}

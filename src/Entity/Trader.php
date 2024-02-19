@@ -28,76 +28,51 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
-    #[Assert\Length(
-        min: 8,
-        max: 60,
-        minMessage: 'Le mot de passe doit faire au moins {{ limit }} caractères.',
-        maxMessage: 'Le mot de passe ne doit pas dépasser {{ limit }} caractères.',
-    )]
-    #[Assert\EqualTo(propertyPath: "confirmpassword", message: "Les mots de passe ne correspondent pas.")]
-    #[Assert\Regex(pattern: "^(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{};:'\",<.>/?`~])")]
     private ?string $password = null;
 
-    #[ORM\Column(length: 500)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
-    #[Assert\EqualTo(propertyPath: "password", message: "Les mots de passe ne correspondent pas.")]
-    private ?string $confirmpassword = null;
-
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $lastnameboss = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $firstnameboss = null;
 
+    #[ORM\Column(length: 500)]
+    private ?string $confirmpassword = null;
+
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $compagnyname = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $siren = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
-    private ?string $phone = null;
-
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $adress = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
-    private ?string $presentation = null;
-
-    #[ORM\ManyToOne(inversedBy: 'traders')]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
-    private ?Activitytype $activitytype = null;
-
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $postalcode = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'trader', targetEntity: Image::class, cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $presentation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'traders')]
+    private ?Activitytype $activitytype = null;
+
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'trader')]
     private Collection $profilephoto;
 
-    #[ORM\OneToMany(mappedBy: 'trader', targetEntity: Image::class, cascade: ["persist"], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'trader')]
     private Collection $coverphoto;
-
-    #[ORM\OneToMany(mappedBy: 'trader', targetEntity: Product::class)]
-    private Collection $products;
 
     public function __construct()
     {
         $this->profilephoto = new ArrayCollection();
         $this->coverphoto = new ArrayCollection();
-        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -170,18 +145,6 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getConfirmpassword(): ?string
-    {
-        return $this->confirmpassword;
-    }
-
-    public function setConfirmpassword(string $confirmpassword): static
-    {
-        $this->confirmpassword = $confirmpassword;
-
-        return $this;
-    }
-
     public function getLastnameboss(): ?string
     {
         return $this->lastnameboss;
@@ -202,6 +165,30 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstnameboss(string $firstnameboss): static
     {
         $this->firstnameboss = $firstnameboss;
+
+        return $this;
+    }
+
+    public function getConfirmpassword(): ?string
+    {
+        return $this->confirmpassword;
+    }
+
+    public function setConfirmpassword(string $confirmpassword): static
+    {
+        $this->confirmpassword = $confirmpassword;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }
@@ -230,18 +217,6 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): static
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
     public function getAdress(): ?string
     {
         return $this->adress;
@@ -250,30 +225,6 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAdress(string $adress): static
     {
         $this->adress = $adress;
-
-        return $this;
-    }
-
-    public function getPresentation(): ?string
-    {
-        return $this->presentation;
-    }
-
-    public function setPresentation(string $presentation): static
-    {
-        $this->presentation = $presentation;
-
-        return $this;
-    }
-
-    public function getActivitytype(): ?Activitytype
-    {
-        return $this->activitytype;
-    }
-
-    public function setActivitytype(?Activitytype $activitytype): static
-    {
-        $this->activitytype = $activitytype;
 
         return $this;
     }
@@ -298,6 +249,30 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): static
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPresentation(): ?string
+    {
+        return $this->presentation;
+    }
+
+    public function setPresentation(string $presentation): static
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    public function getActivitytype(): ?Activitytype
+    {
+        return $this->activitytype;
+    }
+
+    public function setActivitytype(?Activitytype $activitytype): static
+    {
+        $this->activitytype = $activitytype;
 
         return $this;
     }
@@ -356,36 +331,6 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($coverphoto->getTrader() === $this) {
                 $coverphoto->setTrader(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(Product $product): static
-    {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setTrader($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): static
-    {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getTrader() === $this) {
-                $product->setTrader(null);
             }
         }
 

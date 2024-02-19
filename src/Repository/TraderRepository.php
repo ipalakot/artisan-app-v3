@@ -13,7 +13,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends    ServiceEntityRepository<Trader>
+ * @extends ServiceEntityRepository<Trader>
+ *
  * @implements PasswordUpgraderInterface<Trader>
  *
  * @method Trader|null find($id, $lockMode = null, $lockVersion = null)
@@ -111,7 +112,4 @@ class TraderRepository extends ServiceEntityRepository implements PasswordUpgrad
 
 
 
-
-
-
-} //fin de class 
+}

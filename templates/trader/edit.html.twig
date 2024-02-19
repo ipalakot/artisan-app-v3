@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Trader
-{% endblock %}
+{% block title %}Edit Trader{% endblock %}
 
 {% block body %}
-	<h1>Edit Trader</h1>
-	<div class="formulaire">
+    <h1>Edit Trader</h1>
 
-		{{ include('trader/_form.html.twig', {'button_label': 'Update'}) }}
-	</div>
+    {{ include('trader/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('app_trader_index') }}">back to list</a>
+    <a href="{{ path('app_trader_index') }}">back to list</a>
 
-	{{ include('trader/_delete_form.html.twig') }}
+    {{ include('trader/_delete_form.html.twig') }}
 {% endblock %}

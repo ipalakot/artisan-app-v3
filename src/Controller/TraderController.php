@@ -2,20 +2,18 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Trader;
-use App\Entity\Image;
-
-
 use App\Form\TraderType;
+
+
+use App\Entity\Activitytype; 
 use App\Repository\TraderRepository;
-use App\Repository\ActivitytypeRepository; 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Test\FormInterface;
+use App\Repository\ActivitytypeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/trader')]
 class TraderController extends AbstractController
@@ -175,14 +173,6 @@ class TraderController extends AbstractController
             $img->setName($fichier);
             $trader->$addField($img); // Utiliser la méthode addProfilephoto au lieu de addImage
         }
-    } 
 
-
-
-
-
-    
-
-
-    
-}
+    }
+}   

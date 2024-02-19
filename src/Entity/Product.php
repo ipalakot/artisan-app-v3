@@ -40,9 +40,7 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class)]
     private Collection $photo;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?Trader $trader = null;
-
+    
     public function __construct()
     {
         $this->photo = new ArrayCollection();
@@ -167,15 +165,4 @@ class Product
         return $this;
     }
 
-    public function getTrader(): ?Trader
-    {
-        return $this->trader;
-    }
-
-    public function setTrader(?Trader $trader): static
-    {
-        $this->trader = $trader;
-
-        return $this;
-    }
 }

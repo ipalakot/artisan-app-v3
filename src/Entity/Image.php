@@ -19,11 +19,12 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'imgactivity')]
     private ?Activitytype $activitytype = null;
 
-    #[ORM\ManyToOne(inversedBy: 'profilephoto')]
-    private ?Trader $trader = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'photo')]
     private ?Product $product = null;
+
+    #[ORM\ManyToOne(inversedBy: 'profilephoto')]
+    private ?Trader $trader = null;
 
     public function getId(): ?int
     {
@@ -54,17 +55,6 @@ class Image
         return $this;
     }
 
-    public function getTrader(): ?Trader
-    {
-        return $this->trader;
-    }
-
-    public function setTrader(?Trader $trader): static
-    {
-        $this->trader = $trader;
-
-        return $this;
-    }
     public function __toString()
     {
         return $this->name ?? '';
@@ -78,6 +68,18 @@ class Image
     public function setProduct(?Product $product): static
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getTrader(): ?Trader
+    {
+        return $this->trader;
+    }
+
+    public function setTrader(?Trader $trader): static
+    {
+        $this->trader = $trader;
 
         return $this;
     }
