@@ -9,6 +9,8 @@ use App\Form\RegistrationFormType;
 use App\Form\RegistrationTraderFormType;
 
 use App\Security\UserAuthenticator;
+use App\Security\TraderAuthenticator;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +18,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+
 
 class RegistrationController extends AbstractController
 {
@@ -70,7 +75,7 @@ class RegistrationController extends AbstractController
 
     #[Route('/register/trader', name: 'app_register_trader')]
 
-    public function registerTrader(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function registerTrader(Request $request, UserPasswordHasherInterface $userPasswordHasher, TraderAuthenticatorInterface $traderAuthenticator, TraderAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $trader = new Trader(); // Créez une instance de Trader au lieu de User
         $form = $this->createForm(RegistrationTraderFormType::class, $trader); // Utilisez le formulaire de Trader
@@ -101,7 +106,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($trader);
             $entityManager->flush();
             
-            return $userAuthenticator->authenticateUser(
+            return $traderAuthenticator->authenticateTrader(
                 $trader,
                 $authenticator,
                 $request
