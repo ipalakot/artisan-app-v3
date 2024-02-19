@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 
-class TraderType extends AbstractType
+class RegistrationTraderFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
