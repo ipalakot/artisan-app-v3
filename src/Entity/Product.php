@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -17,30 +19,37 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?float $weightprice = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?float $unitprice = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?float $weightproduct = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $composition = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Categoryproduct $categoryproduct = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private Collection $photo;
 
-    
+
     public function __construct()
     {
         $this->photo = new ArrayCollection();
@@ -164,5 +173,4 @@ class Product
 
         return $this;
     }
-
 }

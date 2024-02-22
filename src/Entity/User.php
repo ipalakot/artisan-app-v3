@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -27,18 +29,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
+    #[Assert\EqualTo(propertyPath: "confirmpassword", message: "Les mots de passe ne correspondent pas.")]
     private ?string $password = null;
 
     #[ORM\Column(length: 500)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
+    #[Assert\EqualTo(propertyPath: "password", message: "Les mots de passe ne correspondent pas.")]
     private ?string $confirmpassword = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $phone = null;
 
     public function getId(): ?int

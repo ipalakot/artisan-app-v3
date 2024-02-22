@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\TraderRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\TraderRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TraderRepository::class)]
 class Trader implements UserInterface, PasswordAuthenticatedUserInterface
@@ -28,36 +30,51 @@ class Trader implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
+    #[Assert\EqualTo(propertyPath: "confirmpassword", message: "Les mots de passe ne correspondent pas.")]
     private ?string $password = null;
 
+    #[ORM\Column(length: 500)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
+    #[Assert\EqualTo(propertyPath: "password", message: "Les mots de passe ne correspondent pas.")]
+    private ?string $confirmpassword = null;
+
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $lastnameboss = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $firstnameboss = null;
 
-    #[ORM\Column(length: 500)]
-    private ?string $confirmpassword = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $compagnyname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $siren = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $postalcode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $city = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $presentation = null;
 
     #[ORM\ManyToOne(inversedBy: 'traders')]

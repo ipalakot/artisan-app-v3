@@ -6,6 +6,8 @@ use App\Repository\CategoryproductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: CategoryproductRepository::class)]
 class Categoryproduct
@@ -16,6 +18,7 @@ class Categoryproduct
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $title = null;
 
     #[ORM\OneToMany(mappedBy: 'categoryproduct', targetEntity: Product::class)]

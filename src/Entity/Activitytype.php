@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ActivitytypeRepository::class)]
 #[Entity(repositoryClass: EntityRepository::class)]
@@ -20,9 +22,10 @@ class Activitytype
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'activitytype', targetEntity: Image::class,  cascade:["persist"], orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'activitytype', targetEntity: Image::class,  cascade: ["persist"], orphanRemoval: true)]
     private Collection $imgactivity;
 
     #[ORM\OneToMany(targetEntity: Trader::class, mappedBy: 'activitytype')]
@@ -113,7 +116,4 @@ class Activitytype
 
         return $this;
     }
-
-
-
 }
