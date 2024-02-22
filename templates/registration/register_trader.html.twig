@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<h1>Register Trader</h1>
+	<div class="formulaire">
+		{{ form_errors(registrationTraderForm) }}
+
+		{{ form_start(registrationTraderForm) }}
+		{{form_row(registrationTraderForm.lastnameboss)}}
+		{{form_row(registrationTraderForm.firstnameboss)}}
+		{{ form_row(registrationTraderForm.email) }}
+		{{form_row(registrationTraderForm.phone)}}
+		{{ form_row(registrationTraderForm.password) }}
+		{{form_row(registrationTraderForm.confirmpassword)}}
+		{{form_row(registrationTraderForm.compagnyname)}}
+		{{form_row(registrationTraderForm.siren)}}
+		{{form_row(registrationTraderForm.activitytype)}}
+		{{form_row(registrationTraderForm.adress)}}
+		{{form_row(registrationTraderForm.postalcode)}}
+		{{form_row(registrationTraderForm.city)}}
+		{{form_row(registrationTraderForm.presentation)}}
+
+
+		<button type="submit" class="btn">Enregistrer</button>
+		{{ form_end(registrationTraderForm) }}
+
+	</div>
+
+{% endblock %}

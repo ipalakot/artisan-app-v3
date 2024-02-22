@@ -5,17 +5,20 @@
 
 {% block body %}
 	<h1>Register</h1>
+	<div class="formulaire">
+		{{ form_errors(registrationForm) }}
 
-	{{ form_errors(registrationForm) }}
+		{{ form_start(registrationForm) }}
+		{{form_row(registrationForm.lastname)}}
+		{{form_row(registrationForm.firstname)}}
+		{{ form_row(registrationForm.email) }}
+		{{form_row(registrationForm.phone)}}
+		{{ form_row(registrationForm.plainPassword) }}
+		{{form_row(registrationForm.confirmpassword)}}
 
-	{{ form_start(registrationForm) }}
-	{{form_row(registrationForm.lastname)}}
-	{{form_row(registrationForm.firstname)}}
-	{{ form_row(registrationForm.email) }}
-	{{form_row(registrationForm.phone)}}
-	{{ form_row(registrationForm.plainPassword) }}
-	{{form_row(registrationForm.confirmpassword)}}
+		<button type="submit" class="btn">Enregistrer</button>
+		{{ form_end(registrationForm) }}
 
-	<button type="submit" class="btn">Enregistrer</button>
-	{{ form_end(registrationForm) }}
+	</div>
+
 {% endblock %}

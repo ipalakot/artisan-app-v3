@@ -33,14 +33,23 @@
 		<!--bloc navigation user -->
 		{% include('menus/navigation_user.html.twig') %}
 
-		<!--bloc header principal -->
-		{% include('headers/header.html.twig') %}
+		<!-- navigation trader -->
+		{% if is_granted('ROLE_TRADER') %}
 
-		{% block body %}{% endblock %}
 
-		<!--bloc footer -->
-		{% include('footers/footer.html.twig') %}
+			{% include('menus/navigation_trader.html.twig') %}
+			{%endif%}
 
-		 <script src="{{ asset('js/scripts.js') }}"></script>
+
+			<!--bloc header principal -->
+			{% include('headers/header.html.twig') %}
+
+			{% block body %}{% endblock %}
+
+			<!--bloc footer -->
+			{% include('footers/footer.html.twig') %}
+
+			 <script src="{{ asset('js/scripts.js') }}"></script>
+		</body>
 	</body>
 </html>

@@ -14,16 +14,16 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class TraderType extends AbstractType
+class RegistrationTraderFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('lastnameboss', TextType::class, [
-                'label' => 'Nom du responsable :', 
+                'label' => 'Nom du responsable :',
             ])
             ->add('firstnameboss', TextType::class, [
-                'label' => 'Prénom du responsable :', 
+                'label' => 'Prénom du responsable :',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email :',
@@ -39,13 +39,13 @@ class TraderType extends AbstractType
                 'label' => 'Téléphone :',
             ])
             ->add('compagnyname', TextType::class, [
-                'label'=> 'Nom entreprise :', 
+                'label' => 'Nom entreprise :',
             ])
             ->add('siren', NumberType::class, [
                 'label' => 'Numéro Siren :',
             ])
             ->add('adress', TextType::class, [
-                'label' => 'Adresse :', 
+                'label' => 'Adresse :',
             ])
             ->add('postalcode', NumberType::class, [
                 'label' => 'Code postal :',
@@ -54,10 +54,10 @@ class TraderType extends AbstractType
                 'label' => 'Ville :',
             ])
             ->add('presentation', TextType::class, [
-                'label' => 'Présentation :', 
+                'label' => 'Présentation :',
             ])
             ->add('activitytype', EntityType::class, [
-                'label' => 'Type activité : ', 
+                'label' => 'Type activité : ',
                 'class' => Activitytype::class,
                 'choice_label' => 'title',
             ]);

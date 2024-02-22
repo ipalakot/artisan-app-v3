@@ -3,18 +3,24 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Trader;
+
 use App\Form\RegistrationFormType;
+use App\Form\RegistrationTraderFormType;
+
 use App\Security\UserAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+
+    //register pour les users 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
@@ -30,6 +36,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -44,6 +51,36 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/register/trader', name: 'app_register_trader')]
+    public function registerTrader(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    {
+        $trader = new Trader();
+        $form = $this->createForm(RegistrationTraderFormType::class, $trader);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $trader->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $trader,
+                    $form->get('password')->getData()
+                )
+            );
+            $trader->setRoles(['ROLE_TRADER']);
+
+            $entityManager->persist($trader);
+            $entityManager->flush();
+
+            // Redirection ou traitement supplémentaire après l'enregistrement
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('registration/register_trader.html.twig', [
+            'registrationTraderForm' => $form->createView(),
         ]);
     }
 }
