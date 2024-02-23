@@ -46,7 +46,6 @@ class Product
     private ?Categoryproduct $categoryproduct = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class)]
-    #[Assert\NotBlank(message: 'ce champ est obligatoire!')]
     private Collection $photo;
 
 

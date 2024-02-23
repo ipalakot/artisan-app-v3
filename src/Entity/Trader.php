@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TraderRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints as Assert;
+//use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TraderRepository::class)]
 class Trader implements UserInterface, PasswordAuthenticatedUserInterface
